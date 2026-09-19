@@ -9,7 +9,7 @@ class OrchestratorState(TypedDict, total=False):
     user:str
     question:str
     plan:list[str]
-    rag_context:list[str]
+    rag_context:list[dict]
     mcp_results:dict[str,Any]
     agent_results:list[dict]
     final_answer:str
@@ -42,7 +42,7 @@ async def specialists(state):
         async def one(a):
             prompt=f"""역할: {roles[a]}
 질문: {state['question']}
-RAG 근거: {json.dumps(state['rag_context'],ensure_ascii=False)}
+RAG 근거(출처 포함): {json.dumps(state['rag_context'],ensure_ascii=False)}
 MCP 도구 결과: {json.dumps(state['mcp_results'].get(a,{}),ensure_ascii=False)}
 근거와 일반 분석을 구분하고 확인되지 않은 법령·수치를 만들지 말라. 한국어로 핵심 분석을 작성하라."""
             msg=await model.ainvoke(prompt)
@@ -58,7 +58,7 @@ async def verifier(state):
         model=ChatOpenAI(model=os.getenv("OPENAI_MODEL","gpt-5-mini"),temperature=0)
         prompt=f"""당신은 National AI Orchestrator의 Verifier다.
 질문: {state['question']}
-RAG: {json.dumps(state['rag_context'],ensure_ascii=False)}
+RAG(출처 포함): {json.dumps(state['rag_context'],ensure_ascii=False)}
 MCP: {json.dumps(state['mcp_results'],ensure_ascii=False)}
 Agent 결과: {json.dumps(state['agent_results'],ensure_ascii=False)}
 중복·충돌을 정리하고 근거/추가확인을 구분하여 실행순서가 있는 한국어 최종보고서를 작성하라."""
