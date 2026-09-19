@@ -1,0 +1,23 @@
+[
+  {
+    "title": "국토교통부",
+    "agency": "국토교통부",
+    "type": "official-policy",
+    "url": "https://www.molit.go.kr/",
+    "domains": [
+      "railway",
+      "policy"
+    ],
+    "notes": "철도망·철도사업 기본계획 등 최신 공식자료"
+  },
+  {
+    "title": "공공데이터포털 TAGO 열차정보",
+    "agency": "국토교통부",
+    "type": "openapi",
+    "url": "https://www.data.go.kr/data/15098552/openapi.do",
+    "domains": [
+      "railway",
+      "transport"
+    ]
+  }
+]
