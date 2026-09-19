@@ -1,0 +1,22 @@
+[
+  {
+    "title": "국가법령정보센터 도시개발 관련 법령",
+    "agency": "법제처",
+    "type": "official-law",
+    "url": "https://www.law.go.kr/",
+    "domains": [
+      "urban",
+      "legal"
+    ]
+  },
+  {
+    "title": "국토교통부",
+    "agency": "국토교통부",
+    "type": "official-policy",
+    "url": "https://www.molit.go.kr/",
+    "domains": [
+      "urban",
+      "policy"
+    ]
+  }
+]
