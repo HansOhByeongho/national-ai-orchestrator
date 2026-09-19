@@ -1,23 +1,26 @@
-# National AI Orchestrator v5.0
+# National AI Orchestrator v6.0
 
-Evidence-aware public-sector AI orchestration research prototype.
+Public-sector AI orchestration research prototype with evidence-aware multi-agent analysis and configurable live Korean official-data connectors.
 
-## Runtime
-Question → LangGraph routing → uploaded-document RAG → MCP tools → selected specialist agents → verifier → quality/uncertainty check → human review → audit + Markdown report.
+## Workflow
+Question → LangGraph router → uploaded-document RAG → MCP → official law/statistics tools when configured → specialist agents → verifier → uncertainty check → human review → audit/report.
 
-## Specialist agents
-Railway, Urban Development, Legal/Permitting, Finance/Investment, Transport/Demand, GIS/Spatial, Environment/Disaster, Data/Validation, Policy/Administration.
+## 9 specialist agents
+Railway · Urban Development · Legal/Permitting · Finance/Investment · Transport/Demand · GIS/Spatial · Environment/Disaster · Data/Validation · Policy/Administration
 
-## Implemented
-- FastAPI web UI and PDF/DOCX/TXT/MD knowledge upload
-- persistent chunk store; OpenAI embeddings when configured, keyword fallback otherwise
-- executable LangGraph workflow and LangChain ChatOpenAI agents
-- MCP Python SDK v2 server/client
-- MCP knowledge search, restricted calculator, official-source verification guard, official connector status
-- allowlisted official HTTP connector foundation for law.go.kr, KOSIS, data.go.kr, MOLIT, MOIS, ME and KRIC
-- evidence source propagation, uncertainty flags, human-review recommendation
-- automatic Markdown analysis-report export under reports/
-- RBAC/HITL pattern, audit log, Docker and CI
+## Live connector implementations
+- National Law Information: statute search and statute-body retrieval
+- KOSIS: integrated statistics search and statistics-data retrieval
+- data.go.kr: generic approved `https://apis.data.go.kr/` endpoint caller
+- All connectors fail closed with `needs_key` when credentials are absent.
+
+Environment variables:
+```cmd
+set OPENAI_API_KEY=...
+set LAW_GO_KR_OC=...
+set KOSIS_API_KEY=...
+set DATA_GO_KR_KEY=...
+```
 
 ## Run
 ```cmd
@@ -26,15 +29,11 @@ python -m uvicorn app.main:app --reload
 ```
 Open http://127.0.0.1:8000
 
-Optional:
-```cmd
-set OPENAI_API_KEY=YOUR_KEY
-set DATA_GO_KR_KEY=YOUR_KEY
-set KOSIS_API_KEY=YOUR_KEY
-```
+## Knowledge
+PDF/DOCX/TXT/MD uploads are chunked and persisted. With OpenAI configured, semantic embeddings are used; otherwise keyword retrieval is used.
 
-## Important boundary
-The official connector layer is now executable and domain-allowlisted, but individual Korean government APIs have different endpoints, parameters, authentication and terms. v5 does not pretend that an API is live until its exact endpoint/key is configured and tested. Current law, statistics, program conditions and administrative interpretations must be checked against authoritative sources. Do not upload classified, sensitive, personal, or unauthorized material.
+## MCP tools
+`knowledge_search`, `knowledge_stats`, `calculation`, `official_connector_status`, `korean_law_search`, `korean_law_body`, `kosis_statistics_search`, `kosis_statistics_data`, `public_data_get`.
 
-## MCP
-The project uses the current MCP Python SDK v2 high-level `MCPServer` and first-class `Client`. Tools expose typed schemas and can be invoked through the MCP client rather than direct function calls.
+## Safety / accuracy
+This remains a research prototype. API responses must be interpreted against each provider's official schema and terms. A connector being implemented does not mean a credential has been issued or every dataset is automatically discoverable. data.go.kr datasets have service-specific endpoints and parameters. Current law/statistics should be verified against the returned official source. Do not upload classified, sensitive, personal or unauthorized data.
