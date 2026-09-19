@@ -7,6 +7,7 @@ from app.rag.retriever import retrieve
 from app.agent_catalog import AGENTS,select
 from app.verification import evidence_coverage
 from app.connectors.data_go_router import route as route_public_data
+from app.routing.jev import gate as jev_gate, rerank as jev_rerank, configured as jev_configured
 
 class State(TypedDict,total=False):
     user:str
@@ -20,11 +21,17 @@ class State(TypedDict,total=False):
     quality:dict
 
 async def planner(s):
-    return {"plan":select(s["question"]),"trace":["planner: domain routing"]}
+    deterministic=select(s["question"])
+    decision=await jev_gate(s["question"],list(AGENTS)) if jev_configured() else None
+    proposed=(decision or {}).get("agents",[])
+    plan=[a for a in proposed if a in AGENTS] or deterministic
+    return {"plan":plan,"trace":[f"planner: {'Jev hybrid gate' if decision else 'deterministic routing'}"]}
 
 async def retrieval(s):
-    ctx=retrieve(s["question"],8)
-    return {"rag_context":ctx,"trace":s.get("trace",[])+[f"rag: {len(ctx)} evidence chunks"]}
+    ctx=retrieve(s["question"],20 if jev_configured() else 8)
+    if jev_configured():
+        ctx=await jev_rerank(s["question"],ctx,8)
+    return {"rag_context":ctx,"trace":s.get("trace",[])+[f"rag: {len(ctx)} evidence chunks",f"reranker: {'Jev' if jev_configured() else 'native'}"]}
 
 async def tools(s):
     kb=await call_mcp_tool("knowledge_search",{"query":s["question"],"limit":8})
