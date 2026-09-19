@@ -31,3 +31,9 @@ def test_hongcheon_case_file():
  p=Path("case_studies/hongcheon.json")
  d=json.loads(p.read_text(encoding="utf-8"))
  assert len(d["stations"])==2
+
+def test_public_data_router():
+ from app.connectors.data_go_router import route
+ rows=route("홍천역 반경 2km 토지 공시지가 교통 분석",["railway","gis","urban","finance"])
+ assert rows
+ assert any("gis" in r.get("agents",[]) or "urban" in r.get("agents",[]) for r in rows)
