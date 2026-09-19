@@ -1,4 +1,4 @@
-# National AI Orchestrator v1.0
+# National AI Orchestrator v2.0
 
 Research prototype for public-sector AI orchestration using **AI Agents, RAG, MCP-style tools, multi-agent routing, verification, HITL, audit logging, Docker, and CI**.
 
@@ -11,8 +11,8 @@ Research prototype for public-sector AI orchestration using **AI Agents, RAG, MC
 | Python AI application | FastAPI application and orchestration modules |
 | AI Agent system | Planner, Router, Policy, Legal, Data, Verifier agents |
 | AI Orchestration | Task planning → routing → parallel agent execution → verification |
-| LangChain | Optional adapter in `app/langchain_adapter.py` |
-| MCP | MCP-compatible tool gateway pattern and sample tools in `app/mcp/` |
+| LangChain / LangGraph | Executable `StateGraph` runtime + `ChatOpenAI` specialist agents in `app/graph.py` |
+| MCP | Official MCP Python SDK v2 server + in-process Client `tools/call` execution in `app/mcp/server.py` and `client.py` |
 | RAG | Lightweight retriever in `app/rag/` |
 | Multi-Agent | Specialized agent registry and orchestration |
 | Deployment pipeline | Dockerfile, docker-compose, GitHub Actions CI |
@@ -33,7 +33,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Open `http://127.0.0.1:8000/docs`.
+Open `http://127.0.0.1:8000` for the web UI or `/docs` for Swagger.
 
 Example:
 
@@ -60,7 +60,7 @@ app/
   rag/                 retrieval module
   mcp/                 MCP-style tool gateway and tools
   security/            authorization / HITL / audit
-  langchain_adapter.py optional LangChain integration example
+  graph.py             executable LangGraph workflow\n  mcp/server.py        official MCP v2 server\n  mcp/client.py        official MCP v2 client
 .github/workflows/ci.yml
 Dockerfile
 docker-compose.yml
