@@ -19,7 +19,8 @@ async def retrieval(s):
 
 async def tools(s):
  kb=await call_mcp_tool("knowledge_search",{"query":s["question"],"limit":8})
- guard=await call_mcp_tool("official_source_check",{"topic":s["question"]})\n connector=await call_mcp_tool("official_connector_status",{})
+ guard=await call_mcp_tool("official_source_check",{"topic":s["question"]})
+ connector=await call_mcp_tool("official_connector_status",{})
  return {"mcp_results":{"knowledge":kb,"official_connectors":connector,"official_results":official},"trace":s.get("trace",[])+["mcp: knowledge_search + official live connectors"]}
 
 async def specialists(s):
@@ -49,7 +50,10 @@ async def verifier(s):
 최종보고서를 ①핵심결론 ②분야별 분석 ③근거와 출처 ④쟁점·충돌·불확실성 ⑤실행순서 ⑥추가확인자료 순으로 작성하라. 업로드 자료에 없는 최신 법령·수치·사실은 단정하지 말고 공식 원문 확인 필요라고 표시하라."""
   msg=await model.ainvoke(p); ans=str(msg.content)
  else:
-  ans="[로컬 데모 모드]\n"+"\n".join(f"■ {r['label']}\n{r['summary']}" for r in s["agent_results"])
+  ans="[로컬 데모 모드]
+"+"
+".join(f"■ {r['label']}
+{r['summary']}" for r in s["agent_results"])
  quality=evidence_coverage(ans,s["rag_context"])
  return {"final_answer":ans,"quality":quality,"trace":s.get("trace",[])+["verifier: evidence/uncertainty check","END"]}
 
