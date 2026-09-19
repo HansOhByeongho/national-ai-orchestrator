@@ -6,6 +6,7 @@ from app.mcp.client import call_mcp_tool
 from app.rag.retriever import retrieve
 from app.agent_catalog import AGENTS,select
 from app.verification import evidence_coverage
+from app.connectors.data_go_router import route as route_public_data
 
 class State(TypedDict,total=False):
     user:str
@@ -29,11 +30,12 @@ async def tools(s):
     kb=await call_mcp_tool("knowledge_search",{"query":s["question"],"limit":8})
     connector=await call_mcp_tool("official_connector_status",{})
     official={}
+    public_data_routes=route_public_data(s["question"],s["plan"],8)
     if "legal" in s["plan"] and connector.get("law_go_kr"):
         official["law"]=await call_mcp_tool("korean_law_search",{"query":s["question"],"display":5})
     if ("data" in s["plan"] or "transport" in s["plan"]) and connector.get("kosis"):
         official["kosis"]=await call_mcp_tool("kosis_statistics_search",{"query":s["question"],"count":5})
-    return {"mcp_results":{"knowledge":kb,"official_connectors":connector,"official_results":official},"trace":s.get("trace",[])+["mcp: knowledge + configured official connectors"]}
+    return {"mcp_results":{"knowledge":kb,"official_connectors":connector,"official_results":official,"public_data_routes":public_data_routes},"trace":s.get("trace",[])+[f"public-data router: {len(public_data_routes)} candidates","mcp: knowledge + configured official connectors"]}
 
 async def specialists(s):
     results=[]
