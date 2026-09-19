@@ -1,22 +1,26 @@
 from mcp.server import MCPServer
-
-mcp = MCPServer("National AI Orchestrator Tools")
-
-@mcp.tool()
-def policy_search(query: str) -> dict:
-    """Search the authorized demo policy knowledge base."""
-    docs=[
-      "역세권 개발은 교통·토지이용·산업·주거·관광·재원조달을 함께 검토해야 한다.",
-      "공공 AI 시스템은 근거 추적, 접근통제, 사람의 검토와 감사로그를 고려해야 한다."
-    ]
-    return {"query":query,"results":docs}
+from app.rag.store import search, stats
+mcp=MCPServer("National AI Orchestrator Tools")
 
 @mcp.tool()
-def legal_search(query: str) -> dict:
-    """Return legal-review guardrails from the authorized demo knowledge base."""
-    return {"query":query,"results":["법령명·조문·인허가 요건은 최신 공식 원문으로 재확인해야 한다.","확인되지 않은 법률·수치·사실을 생성하지 않는다."]}
+def knowledge_search(query:str, limit:int=6)->dict:
+    """Search the user-authorized local knowledge base."""
+    return {"query":query,"results":search(query,max(1,min(limit,12)))}
 
 @mcp.tool()
-def data_search(query: str) -> dict:
-    """Return data-analysis requirements from the authorized demo knowledge base."""
-    return {"query":query,"results":["수요·인구·교통·토지·사업비 데이터의 기준시점과 출처를 함께 관리한다.","비교지표와 검증방법을 사전에 정의한다."]}
+def knowledge_stats()->dict:
+    """Return knowledge-base source and chunk counts."""
+    return stats()
+
+@mcp.tool()
+def calculation(expression:str)->dict:
+    """Evaluate a basic arithmetic expression with a restricted character set."""
+    import re
+    if not re.fullmatch(r"[0-9+\-*/(). %]+",expression): return {"status":"denied","reason":"unsupported expression"}
+    try:return {"expression":expression,"result":eval(expression,{"__builtins__":{}},{})}
+    except Exception as e:return {"status":"error","reason":str(e)}
+
+@mcp.tool()
+def official_source_check(topic:str)->dict:
+    """Return a guardrail for facts that require authoritative external verification."""
+    return {"topic":topic,"status":"external_verification_required","guidance":"최신 법령·정부계획·통계·공모조건은 해당 공식 원문/API에서 재확인하십시오."}
