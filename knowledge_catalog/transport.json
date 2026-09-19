@@ -1,0 +1,33 @@
+[
+  {
+    "title": "TAGO 열차정보",
+    "agency": "국토교통부",
+    "type": "openapi",
+    "url": "https://www.data.go.kr/data/15098552/openapi.do",
+    "domains": [
+      "railway",
+      "transport"
+    ]
+  },
+  {
+    "title": "TAGO 지하철정보",
+    "agency": "국토교통부",
+    "type": "openapi",
+    "url": "https://www.data.go.kr/data/15098554/openapi.do",
+    "domains": [
+      "railway",
+      "transport"
+    ]
+  },
+  {
+    "title": "KOSIS 국가통계포털",
+    "agency": "통계청",
+    "type": "official-statistics",
+    "url": "https://kosis.kr/",
+    "domains": [
+      "data",
+      "transport",
+      "policy"
+    ]
+  }
+]
