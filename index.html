@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>National AI Orchestrator v1.0</title>
+<style>
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;margin:0;background:#f6f7fb;color:#111827}
+.wrap{max-width:1000px;margin:40px auto;padding:0 20px}
+.card{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:24px;box-shadow:0 8px 30px rgba(0,0,0,.06);margin-bottom:20px}
+h1{margin:0 0 8px;font-size:32px}.sub{color:#6b7280;margin-bottom:20px}
+textarea{width:100%;min-height:120px;border:1px solid #d1d5db;border-radius:12px;padding:14px;font-size:16px;box-sizing:border-box}
+button{margin-top:12px;border:0;border-radius:12px;padding:12px 18px;font-size:16px;font-weight:700;cursor:pointer;background:#111827;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:16px 0}
+.badge{background:#f3f4f6;padding:12px;border-radius:12px;font-size:14px}
+pre{white-space:pre-wrap;background:#0f172a;color:#e5e7eb;padding:16px;border-radius:12px;overflow:auto}
+.small{font-size:13px;color:#6b7280}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>National AI Orchestrator v1.0</h1>
+    <div class="sub">AI Agent · RAG · MCP · Multi-Agent · HITL · Audit</div>
+    <div class="grid">
+      <div class="badge">Planner</div><div class="badge">Agent Router</div><div class="badge">RAG</div>
+      <div class="badge">MCP Tools</div><div class="badge">Verifier</div><div class="badge">HITL / Audit</div>
+    </div>
+    <textarea id="q">철도 역세권 개발 시 법령·정책·데이터 관점의 검토사항을 정리해줘</textarea>
+    <button onclick="run()">실행</button>
+    <div class="small">데모는 연구용 프로토타입입니다.</div>
+  </div>
+  <div class="card">
+    <b>실행 결과</b>
+    <pre id="out">실행 버튼을 눌러주세요.</pre>
+  </div>
+</div>
+<script>
+async function run(){
+ const out=document.getElementById('out'); out.textContent='실행 중...';
+ try{
+  const r=await fetch('/api/orchestrate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:document.getElementById('q').value})});
+  const j=await r.json(); out.textContent=JSON.stringify(j,null,2);
+ }catch(e){out.textContent='오류: '+e}
+}
+</script>
+</body>
+</html>
