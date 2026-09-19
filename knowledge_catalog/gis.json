@@ -1,0 +1,13 @@
+[
+  {
+    "title": "공공데이터포털",
+    "agency": "행정안전부",
+    "type": "official-data-catalog",
+    "url": "https://www.data.go.kr/",
+    "domains": [
+      "gis",
+      "data"
+    ],
+    "notes": "교통망·POI 등 데이터셋은 서비스 승인 후 정확한 endpoint를 등록"
+  }
+]
