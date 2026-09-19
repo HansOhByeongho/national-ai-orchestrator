@@ -1,0 +1,22 @@
+[
+  {
+    "title": "홍천군 공식 홈페이지",
+    "agency": "홍천군",
+    "type": "local-government",
+    "url": "https://www.hongcheon.go.kr/",
+    "domains": [
+      "policy",
+      "urban"
+    ],
+    "notes": "공개된 군정·계획·고시·공고 자료만 사용"
+  },
+  {
+    "title": "강원특별자치도",
+    "agency": "강원특별자치도",
+    "type": "regional-government",
+    "url": "https://state.gwd.go.kr/",
+    "domains": [
+      "policy"
+    ]
+  }
+]
