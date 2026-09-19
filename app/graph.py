@@ -19,8 +19,8 @@ async def retrieval(s):
 
 async def tools(s):
  kb=await call_mcp_tool("knowledge_search",{"query":s["question"],"limit":8})
- guard=await call_mcp_tool("official_source_check",{"topic":s["question"]})
- return {"mcp_results":{"knowledge":kb,"official_source_guard":guard},"trace":s.get("trace",[])+["mcp: knowledge_search + official_source_check"]}
+ guard=await call_mcp_tool("official_source_check",{"topic":s["question"]})\n connector=await call_mcp_tool("official_connector_status",{})
+ return {"mcp_results":{"knowledge":kb,"official_source_guard":guard,"official_connectors":connector},"trace":s.get("trace",[])+["mcp: knowledge_search + official_source_check + connector_status"]}
 
 async def specialists(s):
  results=[]
