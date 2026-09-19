@@ -34,3 +34,32 @@ def kosis_statistics_data(params:dict)->dict:
 def public_data_get(endpoint:str,params:dict)->dict:
  """Call an approved apis.data.go.kr endpoint with the configured service key."""
  return data_go_get(endpoint,params)
+
+from app.analytics.spatial import haversine_km,influence_zone
+from app.analytics.finance import development_cost,funding_mix
+from app.analytics.demand import scenario_demand
+
+@mcp.tool()
+def geo_distance_km(lat1:float,lon1:float,lat2:float,lon2:float)->dict:
+ """Calculate great-circle distance between two coordinates."""
+ return {"distance_km":round(haversine_km(lat1,lon1,lat2,lon2),3)}
+
+@mcp.tool()
+def geo_influence_zone(lat:float,lon:float,points:list[dict],radius_km:float=2.0)->dict:
+ """Measure points against a station-centered influence radius."""
+ return influence_zone(lat,lon,points,radius_km)
+
+@mcp.tool()
+def estimate_development_cost(area_m2:float,unit_cost_per_m2:float,contingency_pct:float=10)->dict:
+ """Transparent arithmetic development-cost scenario."""
+ return development_cost(area_m2,unit_cost_per_m2,contingency_pct)
+
+@mcp.tool()
+def estimate_funding_mix(total:float,shares:dict)->dict:
+ """Split a total project cost by user-supplied funding shares."""
+ return funding_mix(total,shares)
+
+@mcp.tool()
+def estimate_demand_scenario(base_population:float,trip_rate:float,capture_rate:float,rail_share:float)->dict:
+ """Simple auditable scenario model; not an official transport forecast."""
+ return scenario_demand(base_population,trip_rate,capture_rate,rail_share)
