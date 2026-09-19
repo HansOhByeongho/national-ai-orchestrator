@@ -1,0 +1,194 @@
+{
+  "version": "8.1",
+  "policy": "Metadata/official portal links are committed; credentials and bulk API payloads are not.",
+  "datasets": [
+    {
+      "id": "tago_train",
+      "title": "국토교통부_TAGO 열차정보",
+      "portal_url": "https://www.data.go.kr/data/15098552/openapi.do",
+      "agents": [
+        "railway",
+        "transport"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "tago_subway",
+      "title": "국토교통부_TAGO 지하철정보",
+      "portal_url": "https://www.data.go.kr/data/15098554/openapi.do",
+      "agents": [
+        "railway",
+        "transport"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "transport_link",
+      "title": "국토교통부_교통링크",
+      "portal_url": "https://www.data.go.kr/data/15056674/openapi.do",
+      "agents": [
+        "transport",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "poi_search",
+      "title": "국토교통부_검색 API(POI)",
+      "portal_url": "https://www.data.go.kr/data/15058799/openapi.do",
+      "agents": [
+        "gis",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "land_use",
+      "title": "국토교통부_토지이용계획정보",
+      "portal_url": "https://www.data.go.kr/data/15123973/openapi.do",
+      "agents": [
+        "gis",
+        "urban",
+        "legal"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "land_forest",
+      "title": "국토교통부_토지임야정보",
+      "portal_url": "https://www.data.go.kr/data/15123884/openapi.do",
+      "agents": [
+        "gis",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "official_land_price",
+      "title": "국토교통부_개별공시지가정보",
+      "portal_url": "https://www.data.go.kr/data/15124014/openapi.do",
+      "agents": [
+        "finance",
+        "urban",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "standard_land_price",
+      "title": "국토교통부_표준지공시지가정보",
+      "portal_url": "https://www.data.go.kr/data/15123971/openapi.do",
+      "agents": [
+        "finance",
+        "urban",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "land_trade",
+      "title": "국토교통부_토지 매매 실거래가 자료",
+      "portal_url": "https://www.data.go.kr/data/15126466/openapi.do",
+      "agents": [
+        "finance",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "building_register",
+      "title": "국토교통부_건축HUB_건축물대장정보",
+      "portal_url": "https://www.data.go.kr/data/15134735/openapi.do",
+      "agents": [
+        "urban",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "regulation_guide",
+      "title": "국토교통부_규제안내서서비스",
+      "portal_url": "https://www.data.go.kr/data/15057263/openapi.do",
+      "agents": [
+        "legal",
+        "urban",
+        "policy"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "tourism",
+      "title": "한국관광공사_국문 관광정보 서비스",
+      "portal_url": "https://www.data.go.kr/data/15101578/openapi.do",
+      "agents": [
+        "policy",
+        "gis",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "tourism_visitors",
+      "title": "한국관광공사_빅데이터_지역별 방문자수",
+      "portal_url": "https://www.data.go.kr/data/15101972/openapi.do",
+      "agents": [
+        "data",
+        "transport",
+        "policy"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "wellness_tourism",
+      "title": "한국관광공사_웰니스관광정보",
+      "portal_url": "https://www.data.go.kr/data/15144030/openapi.do",
+      "agents": [
+        "policy",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    }
+  ]
+}
