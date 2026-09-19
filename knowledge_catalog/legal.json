@@ -1,0 +1,24 @@
+[
+  {
+    "title": "국가법령정보센터",
+    "agency": "법제처",
+    "type": "official-law",
+    "url": "https://www.law.go.kr/",
+    "domains": [
+      "legal",
+      "urban"
+    ],
+    "notes": "역세권법·도시개발법·국토계획법·지역개발지원법·철도건설법·환경영향평가법 등 현행 원문 확인"
+  },
+  {
+    "title": "국토교통부 규제정보",
+    "agency": "국토교통부",
+    "type": "official-guidance",
+    "url": "https://www.molit.go.kr/",
+    "domains": [
+      "legal",
+      "policy"
+    ],
+    "notes": "인허가·정책 지침은 최신 원문 재확인"
+  }
+]
