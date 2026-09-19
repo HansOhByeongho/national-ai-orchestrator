@@ -2,9 +2,9 @@ from fastapi.testclient import TestClient
 from app.main import app
 client=TestClient(app)
 def test_health():
- r=client.get("/health"); assert r.status_code==200; assert r.json()["version"]=="4.0.0"
+ r=client.get("/health"); assert r.status_code==200; assert r.json()["version"]=="6.0.0"
 def test_home():
- r=client.get("/"); assert r.status_code==200; assert "v4.0" in r.text
+ r=client.get("/"); assert r.status_code==200; assert "v6.0" in r.text
 def test_domain_routing():
  r=client.post("/orchestrate",json={"user":"analyst","question":"철도 역세권 법령 국비 교통 수요 GIS 환경 데이터 분석"})
  assert r.status_code==200
