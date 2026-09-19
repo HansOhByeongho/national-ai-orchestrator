@@ -1,0 +1,29 @@
+{
+  "name": "Hongcheon railway station-area public demo",
+  "public_only": true,
+  "stations": [
+    {
+      "id": "hongcheon",
+      "label": "홍천역 예정지",
+      "lat": 37.684241569707915,
+      "lon": 127.8539080854961,
+      "radii_km": [
+        0.5,
+        1,
+        2
+      ]
+    },
+    {
+      "id": "yangdeokwon",
+      "label": "양덕원역 예정지",
+      "lat": 37.62144838643973,
+      "lon": 127.7661183295264,
+      "radii_km": [
+        0.5,
+        1,
+        2
+      ]
+    }
+  ],
+  "notice": "Coordinates are public-demo case inputs. Reconfirm against the latest official railway plan before decision-making."
+}
