@@ -2,9 +2,9 @@ from fastapi.testclient import TestClient
 from app.main import app
 client=TestClient(app)
 def test_health():
- r=client.get("/health"); assert r.status_code==200; assert r.json()["version"]=="7.0.0"
+ r=client.get("/health"); assert r.status_code==200; assert r.json()["version"]=="8.0.0"
 def test_home():
- r=client.get("/"); assert r.status_code==200; assert "v7.0" in r.text
+ r=client.get("/"); assert r.status_code==200; assert "v8.0" in r.text
 def test_domain_routing():
  r=client.post("/orchestrate",json={"user":"analyst","question":"철도 역세권 법령 국비 교통 수요 GIS 환경 데이터 분석"})
  assert r.status_code==200
@@ -21,3 +21,13 @@ def test_spatial_math():
 def test_finance_math():
  from app.analytics.finance import funding_mix
  assert funding_mix(100,{"national":70,"local":30})["amounts"]["national"]==70
+
+def test_public_catalog():
+ from app.knowledge.catalog import load_catalog
+ assert len(load_catalog()) >= 8
+def test_hongcheon_case_file():
+ import json
+ from pathlib import Path
+ p=Path("case_studies/hongcheon.json")
+ d=json.loads(p.read_text(encoding="utf-8"))
+ assert len(d["stations"])==2
