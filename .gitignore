@@ -2,5 +2,13 @@
 __pycache__/
 .pytest_cache/
 .env
+.env.*
 *.log
 *.pyc
+data/knowledge.json
+local_knowledge/
+uploads/
+reports/
+logs/
+*.key
+*.pem
