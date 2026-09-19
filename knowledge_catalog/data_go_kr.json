@@ -1,5 +1,5 @@
 {
-  "version": "8.1",
+  "version": "8.2",
   "policy": "Metadata/official portal links are committed; credentials and bulk API payloads are not.",
   "datasets": [
     {
@@ -189,6 +189,100 @@
       "enabled": false,
       "endpoint": null,
       "notes": "공공데이터포털 활용신청 후 해당 서비스의 실제 endpoint와 요청변수를 등록하면 활성화"
+    },
+    {
+      "id": "traffic_impact",
+      "title": "국토교통부_교통영향평가정보지원시스템",
+      "portal_url": "https://www.data.go.kr/data/15113408/openapi.do",
+      "agents": [
+        "transport",
+        "urban",
+        "policy"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "traffic_flow",
+      "title": "국토교통부_교통소통정보",
+      "portal_url": "https://www.data.go.kr/data/15040463/openapi.do",
+      "agents": [
+        "transport",
+        "data"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "traffic_cctv",
+      "title": "국토교통부_교통CCTV",
+      "portal_url": "https://www.data.go.kr/data/3068943/openapi.do",
+      "agents": [
+        "transport",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "frequent_route",
+      "title": "국토교통부_최빈교통이용경로데이터",
+      "portal_url": "https://www.data.go.kr/data/15154303/openapi.do",
+      "agents": [
+        "transport",
+        "data",
+        "urban"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "apartment_basic",
+      "title": "국토교통부_공동주택 기본 정보제공 서비스",
+      "portal_url": "https://www.data.go.kr/data/15058453/openapi.do",
+      "agents": [
+        "urban",
+        "data",
+        "gis"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "molit_policy_analysis",
+      "title": "국토교통부_데이터활용 정책 분석서비스",
+      "portal_url": "https://www.data.go.kr/data/15109249/openapi.do",
+      "agents": [
+        "policy",
+        "data"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
+    },
+    {
+      "id": "sme_notices",
+      "title": "중소벤처기업부_사업공고",
+      "portal_url": "https://www.data.go.kr/data/15113297/openapi.do",
+      "agents": [
+        "policy",
+        "finance"
+      ],
+      "key_env": "DATA_GO_KR_KEY",
+      "enabled": false,
+      "endpoint": null,
+      "notes": "공공데이터포털 활용신청 후 실제 endpoint/요청변수 등록"
     }
   ]
 }
